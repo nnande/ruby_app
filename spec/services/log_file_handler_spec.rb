@@ -1,6 +1,6 @@
-require_relative '../log_parser'
+require_relative '../../services/log_file_handler'
 
-describe LogParser do
+describe LogFileHandler do
   describe '#call' do
     subject { described_class.new(filename: filename).call }
 
@@ -20,7 +20,7 @@ describe LogParser do
             '/home: 78'
           ]
 
-          expect(subject[:ordered_by_visits_desc]).to eq(expected_output)
+          expect(subject[:visits]).to eq(expected_output)
         end
 
         it 'lists unique webpages ordered by views DESC' do
@@ -33,7 +33,7 @@ describe LogParser do
             "/about: 21"
           ]
 
-          expect(subject[:ordered_by_unique_visits_desc]).to eq(expected_output)
+          expect(subject[:unique_visits]).to eq(expected_output)
         end
       end
     end
